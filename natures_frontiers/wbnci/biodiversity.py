@@ -1,6 +1,4 @@
-import glob
 import os
-import shutil
 import pandas as pd
 import numpy as np
 import osgeo.gdal as gdal

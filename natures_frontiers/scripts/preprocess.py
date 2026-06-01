@@ -3,7 +3,7 @@ import sys
 import shutil
 import glob
 import yaml
-from itertools import chain, count
+from itertools import chain
 import pandas as pd
 import geopandas as gpd
 import pygeoprocessing.geoprocessing as pygeo
@@ -22,7 +22,7 @@ from wbnci.scenario_creation import (
     extensification_bmps_rainfed, extensification_bmps_irrigated,
     grazing_expansion, forestry_expansion, all_urban, all_econ)
 from wbnci.preprocessing import (create_regular_sdu_grid, aggregate_marginal_values,
-                                 build_sdu_score_table, join_table_to_grid, read_country_list)
+                                 build_sdu_score_table, read_country_list)
 import wbnci.grazing
 import wbnci.forestry
 import wbnci.carbon_new

@@ -1,8 +1,5 @@
 from __future__ import annotations
 import os
-import sys
-import json
-import glob
 import math
 from typing import List
 from collections import defaultdict
@@ -14,7 +11,6 @@ import geopandas as gpd
 import osgeo.gdal as gdal
 import osgeo.ogr as ogr
 import osgeo.osr as osr
-# import gdal, ogr, osr
 import pygeoprocessing.geoprocessing as pygeo
 
 GDT_Byte_NODATA = 7

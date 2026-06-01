@@ -2,16 +2,11 @@ from __future__ import annotations
 
 import os
 import pathlib
-import sys
-import json
-import glob
 import pandas as pd
-import geopandas as gpd
 import numpy as np
 import osgeo.gdal as gdal
 import h5py
 import pygeoprocessing.geoprocessing as geo
-import taskgraph
 import matplotlib.pyplot as plt
 import matplotlib.patches as mpatches
 from typing import TypeVar, List

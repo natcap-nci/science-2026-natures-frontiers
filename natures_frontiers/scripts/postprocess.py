@@ -2,21 +2,13 @@ from __future__ import annotations
 
 import os
 import sys
-import json
-import shutil
-import glob
 import yaml
-import pandas as pd
-import numpy as np
-import matplotlib.pyplot as plt
-import h5py
 
 from wbnci.preprocessing import read_country_list
 from wbnci.reports import (make_summary_tables, make_lulc_legend,
                            make_reference_point_lulc_maps, get_nearest_max_id, 
                            get_overall_extreme_ids, get_pareto_extreme_ids,
-                           make_frontier_plot, make_activity_maps)
-from wbnci.agreement_maps import make_agreement_maps
+                           make_frontier_plot)
 
 
 

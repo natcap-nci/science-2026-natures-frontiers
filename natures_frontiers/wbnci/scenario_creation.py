@@ -1,21 +1,10 @@
-import multiprocessing
 import os
 import sys
 from itertools import chain
-import json
-import glob
-import math
-from typing import List
-import shutil
-import tempfile
 import numpy as np
-import geopandas as gpd
-import osgeo.gdal as gdal
 import pygeoprocessing.geoprocessing as pygeo
 sys.path.append('..')
-from wbnci.preprocessing import make_scenario_map, make_scenario_map_pv, make_intersection_mask
-from wbnci.workers import worker
-from wbnci.utils import read_to_array, read_lulc_table
+from wbnci.utils import read_lulc_table
 
 
 """

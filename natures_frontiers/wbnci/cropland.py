@@ -1,17 +1,7 @@
 import os
-import sys
-import json
-import glob
-import math
-from typing import List
-import shutil
-import tempfile
 import numpy as np
-import pandas as pd
-import geopandas as gpd
 import osgeo.gdal as gdal
 import pygeoprocessing.geoprocessing as pygeo
-import taskgraph
 
 """
 This stage of the preprocessing will:

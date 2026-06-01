@@ -1,18 +1,12 @@
 from __future__ import annotations
 
 import os
-import sys
-import json
 import glob
 import pandas as pd
 import geopandas as gpd
 import numpy as np
-import osgeo.gdal as gdal
 import h5py
-import pygeoprocessing.geoprocessing as geo
-import taskgraph
 import matplotlib.pyplot as plt
-import matplotlib.patches as mpatches
 from .solution_mapping import (raster_from_solution_archive, lulc_tif_to_png, 
                                rasterize_sdu_shapefile, make_legend, lulc_to_activity,
                                make_activity_legend)
