@@ -72,3 +72,33 @@ The `wbnci` package contains the Python modules called by `scripts/preprocess.py
 ### docs/
 
 **`docs/solution-docs.md`** — Describes the structure of the `solutions.h5` output files produced by the optimization, including how to read solutions from Python using `h5py`.
+
+## data_prep_scripts
+
+These scripts were used to prepare global input raster datasets that feed into the main
+preprocessing pipeline (`natures_frontiers/scripts/preprocess.py`). In particular these scripts
+allow users to create necessary biodiversity and LULC inputs from IUCN and ESA data sources that
+could not be distributed with the inputs repository due to licensing.
+
+**`speciesRichness.py`** — For each country, clips and rasterizes IUCN range maps for birds,
+reptiles, amphibians, and mammals, weighting each species' presence by its inverse range size.
+Produces per-country, per-taxa potential species richness rasters (`{Taxa}.tif`) used as inputs to
+the biodiversity sub-metric in `wbnci/biodiversity.py`.
+
+**`redList.py`** — Same structure as `speciesRichness.py`, but restricts rasterization to species
+listed on the IUCN Red List. Produces per-country, per-taxa Red List species richness rasters
+(`{Taxa}RL.tif`) used as inputs to the biodiversity sub-metric.
+
+**`endemic.py`** — For each country, rasterizes IUCN range maps for four taxa and weights each species by the inverse of its range area (a range-size rarity metric). Produces per-country endemic-weighted richness rasters (`{Taxa}Endemic.tif`) used as inputs to the biodiversity sub-metric.
+
+**`kbas.py`** — For each country, rasterizes the global Key Biodiversity Areas (KBA) polygon dataset, producing a per-country raster (`KBAs.tif`) indicating the count of KBAs overlapping each pixel. Used as an input to the biodiversity sub-metric.
+
+**`ecoregions.py`** — For each country, rasterizes the Ecoregions 2017 polygon dataset, storing the shape area of each ecoregion at the pixel level to create an ecoregion-rarity weight raster (`ecoMaps.tif`). Used as an input to the biodiversity sub-metric.
+
+**`potentialVegSherlock.py`** — Generates per-country potential vegetation rasters by applying Gaussian smoothing to ESA land cover classes and assigning each pixel to the dominant natural vegetation type within its ecoregion/biome. The resulting potential vegetation rasters are used in scenario creation (e.g., to define restoration targets) in `wbnci/scenario_creation.py`.
+
+**`makeNewESAbasemaps.py`** — Creates modified per-country ESA land use basemaps by overlaying grazing and forestry production value rasters and using FAO national production statistics to determine the area assigned to pasture and managed forestry. Also generates a plantation map distinguishing plantation forest from natural forest cover. The outputs feed into the forestry and grazing input layers for the main analysis.
+
+**`fillAndScaleForestry.py`** — Fills spatial gaps in global timber biomass rasters using Gaussian convolution, then scales the filled values by Net Primary Productivity (NPP) relative to the per-zone NPP mean, producing country-level forestry productivity rasters. The scaling accounts for variation in site productivity across zones and land cover types. Outputs are used as inputs to `wbnci/forestry.py`.
+
+**`merge.py`** — Mosaics per-country output rasters (e.g., modified biomass rasters) into a single global raster using rasterio's merge function. Used to reassemble country-level outputs from `makeNewESAbasemaps.py` into global input layers.
